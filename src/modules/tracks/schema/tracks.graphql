@@ -1,0 +1,9 @@
+type Track {
+    id: ID!
+    title: String!
+    albumId: string
+    bandsIds: string[]
+    duration: number
+    released: number
+    genresIds: string[]
+}
