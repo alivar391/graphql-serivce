@@ -1,9 +1,14 @@
 type Track {
-    id: ID!
-    title: String!
-    albumId: string
-    bandsIds: string[]
-    duration: number
-    released: number
-    genresIds: string[]
+  id: ID!
+  title: String!
+  albums: [Album]
+  bands: [Band]
+  duration: Int
+  released: Int
+  genres: [Genre]
+}
+
+type Query {
+  tracks(limit: Int, offset: Int): [Track]
+  track(id: ID!): Track
 }
