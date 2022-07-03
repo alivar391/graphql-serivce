@@ -7,6 +7,22 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface RegisterUser {
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+    favouriteArtistIds?: Nullable<Nullable<string>[]>;
+    favouriteSongsIds?: Nullable<Nullable<string>[]>;
+    favouriteBandsIds?: Nullable<Nullable<string>[]>;
+    favouriteGenresIds?: Nullable<Nullable<string>[]>;
+}
+
+export interface Login {
+    email: string;
+    password: string;
+}
+
 export interface Album {
     id: string;
     name?: Nullable<string>;
@@ -21,7 +37,7 @@ export interface Album {
 export interface IQuery {
     albums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Album>[]> | Promise<Nullable<Nullable<Album>[]>>;
     album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
-    artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
+    getArtists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
@@ -31,8 +47,8 @@ export interface IQuery {
     genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
     track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
-    users(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
-    user(id: string): Nullable<User> | Promise<Nullable<User>>;
+    getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
+    login(login?: Nullable<Login>): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
 
 export interface Artist {
@@ -95,6 +111,18 @@ export interface User {
     secondName?: Nullable<string>;
     password?: Nullable<string>;
     email: string;
+    favouriteArtistIds?: Nullable<Nullable<string>[]>;
+    favouriteSongsIds?: Nullable<Nullable<string>[]>;
+    favouriteBandsIds?: Nullable<Nullable<string>[]>;
+    favouriteGenresIds?: Nullable<Nullable<string>[]>;
+}
+
+export interface JWT {
+    jwt: string;
+}
+
+export interface IMutation {
+    register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 type Nullable<T> = T | null;

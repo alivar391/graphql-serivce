@@ -11,6 +11,6 @@ type Artist {
 }
 
 type Query {
-  artists(limit: Int, offset: Int): [Artist]
+  getArtists(limit: Int, offset: Int): [Artist]
   artist(id: ID!): Artist
 }

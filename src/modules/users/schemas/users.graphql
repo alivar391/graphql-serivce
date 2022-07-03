@@ -4,9 +4,37 @@ type User {
   secondName: String
   password: String
   email: String!
+  favouriteArtistIds: [String]
+  favouriteSongsIds: [String]
+  favouriteBandsIds: [String]
+  favouriteGenresIds: [String]
+}
+
+type JWT {
+  jwt: String!
+}
+
+input RegisterUser {
+  firstName: String!
+  lastName: String!
+  password: String!
+  email: String!
+  favouriteArtistIds: [String]
+  favouriteSongsIds: [String]
+  favouriteBandsIds: [String]
+  favouriteGenresIds: [String]
+}
+
+input Login {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  register(user: RegisterUser): User
 }
 
 type Query {
-  users(limit: Int, offset: Int): [User]
-  user(id: ID!): User
+  getUser(id: ID!): User
+  login(login: Login): JWT
 }
