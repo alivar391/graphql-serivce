@@ -1,25 +1,57 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-// import { Login, RegisterUser } from 'src/graphql';
+import { CreateArtist, UpdateArtist } from 'src/graphql';
 
 @Injectable()
 export class ArtistsService {
-  private readonly user: AxiosInstance;
+  private readonly artist: AxiosInstance;
   constructor() {
-    this.user = axios.create({
+    this.artist = axios.create({
       baseURL: 'http://localhost:3002/v1/artists',
     });
   }
-  // async create(user: RegisterUser) {
-  //   const { data } = await this.user.post('/register', user);
-  //   return data;
-  // }
-  // async findOneById(id: string) {
-  //   const { data } = await this.user.get(`/${id}`);
-  //   return data;
-  // }
-  async getArtists() {
-    const { data } = await this.user.get(`/`);
-    return data;
+
+  async create(artist: CreateArtist, token: string) {
+    try {
+      const { data } = await this.artist.post('/', artist, {
+        headers: { Authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async delete(id: string, token: string) {
+    try {
+      const { data } = await this.artist.delete(`/${id}`, {
+        headers: { Authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async update(id: string, artist: UpdateArtist, token: string) {
+    try {
+      const { data } = await this.artist.put(`/${id}`, artist, {
+        headers: { Authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getArtists(limit: number, offset: number) {
+    try {
+      const { data } = await this.artist.get(
+        `?limit=${limit}&offset=${offset}`,
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

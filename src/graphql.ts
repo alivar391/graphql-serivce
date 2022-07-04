@@ -7,6 +7,29 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface CreateArtist {
+    firstName: string;
+    secondName: string;
+    middleName?: Nullable<string>;
+    birthDate?: Nullable<string>;
+    birthPlace?: Nullable<string>;
+    country: string;
+    bands?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<string>;
+}
+
+export interface UpdateArtist {
+    id?: Nullable<string>;
+    firstName?: Nullable<string>;
+    secondName?: Nullable<string>;
+    middleName?: Nullable<string>;
+    birthDate?: Nullable<string>;
+    birthPlace?: Nullable<string>;
+    country?: Nullable<string>;
+    bands?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<string>;
+}
+
 export interface RegisterUser {
     firstName: string;
     lastName: string;
@@ -37,7 +60,7 @@ export interface Album {
 export interface IQuery {
     albums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Album>[]> | Promise<Nullable<Nullable<Album>[]>>;
     album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
-    getArtists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
+    getArtists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
@@ -52,7 +75,7 @@ export interface IQuery {
 }
 
 export interface Artist {
-    id: string;
+    _id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -61,6 +84,20 @@ export interface Artist {
     country?: Nullable<string>;
     bands?: Nullable<Nullable<Band>[]>;
     instruments?: Nullable<string>;
+}
+
+export interface Artists {
+    items?: Nullable<Nullable<Artist>[]>;
+    limit?: Nullable<number>;
+    offset?: Nullable<number>;
+    total?: Nullable<number>;
+}
+
+export interface IMutation {
+    createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    deleteArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Band {
@@ -119,10 +156,6 @@ export interface User {
 
 export interface JWT {
     jwt: string;
-}
-
-export interface IMutation {
-    register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 type Nullable<T> = T | null;

@@ -19,6 +19,10 @@ import { join } from 'path';
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
       },
+      context: ({ req }) => {
+        const token = req.headers.authorization || '';
+        return { token };
+      },
       playground: true,
       driver: ApolloDriver,
     }),

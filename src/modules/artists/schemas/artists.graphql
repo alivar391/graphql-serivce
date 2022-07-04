@@ -1,5 +1,5 @@
 type Artist {
-  id: ID!
+  _id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -10,7 +10,43 @@ type Artist {
   instruments: String
 }
 
+input CreateArtist {
+  firstName: String!
+  secondName: String!
+  middleName: String
+  birthDate: String
+  birthPlace: String
+  country: String!
+  bands: [String]
+  instruments: String
+}
+
+input UpdateArtist {
+  id: ID
+  firstName: String
+  secondName: String
+  middleName: String
+  birthDate: String
+  birthPlace: String
+  country: String
+  bands: [String]
+  instruments: String
+}
+
+type Artists {
+  items: [Artist]
+  limit: Int
+  offset: Int
+  total: Int
+}
+
 type Query {
-  getArtists(limit: Int, offset: Int): [Artist]
+  getArtists(limit: Int, offset: Int): Artists
   artist(id: ID!): Artist
+}
+
+type Mutation {
+  createArtist(artist: CreateArtist): Artist
+  deleteArtist(id: ID!): Artist
+  updateArtist(id: ID!, artist: UpdateArtist): Artist
 }

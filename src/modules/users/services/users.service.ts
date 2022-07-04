@@ -16,8 +16,8 @@ export class UsersService {
     const { data } = await this.user.get(`/${id}`);
     return data;
   }
-  async login(loginDto: Login) {
-    const { data } = await this.user.post(`/login`, loginDto);
+  async login(login: Login) {
+    const { data } = await this.user.post(`/login`, login);
     return data;
   }
 }
