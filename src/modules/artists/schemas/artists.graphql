@@ -22,7 +22,7 @@ input CreateArtist {
 }
 
 input UpdateArtist {
-  id: ID
+  _id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -40,6 +40,11 @@ type Artists {
   total: Int
 }
 
+type DeleteResponse {
+  acknowledged: Boolean
+  deletedCount: Int
+}
+
 type Query {
   getArtists(limit: Int, offset: Int): Artists
   artist(id: ID!): Artist
@@ -47,6 +52,6 @@ type Query {
 
 type Mutation {
   createArtist(artist: CreateArtist): Artist
-  deleteArtist(id: ID!): Artist
+  deleteArtist(id: ID!): DeleteResponse
   updateArtist(id: ID!, artist: UpdateArtist): Artist
 }
