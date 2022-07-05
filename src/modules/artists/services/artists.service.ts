@@ -54,4 +54,15 @@ export class ArtistsService {
       console.error(error);
     }
   }
+
+  async getArtist(id: string, token: string) {
+    try {
+      const { data } = await this.artist.get(`/${id}`, {
+        headers: { Authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

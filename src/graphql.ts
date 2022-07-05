@@ -44,6 +44,26 @@ export interface UpdateGenre {
     year?: Nullable<number>;
 }
 
+export interface CreateTrack {
+    title: string;
+    album?: Nullable<string>;
+    artists?: Nullable<string>;
+    bands?: Nullable<string>;
+    duration?: Nullable<number>;
+    released?: Nullable<number>;
+    genres?: Nullable<string>;
+}
+
+export interface UpdateTrack {
+    title?: Nullable<string>;
+    album?: Nullable<string>;
+    artists?: Nullable<string>;
+    bands?: Nullable<string>;
+    duration?: Nullable<number>;
+    released?: Nullable<number>;
+    genres?: Nullable<string>;
+}
+
 export interface RegisterUser {
     firstName: string;
     lastName: string;
@@ -75,14 +95,14 @@ export interface IQuery {
     albums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Album>[]> | Promise<Nullable<Nullable<Album>[]>>;
     album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
     getArtists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
-    artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
+    getArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     favourites(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Favourites>[]> | Promise<Nullable<Nullable<Favourites>[]>>;
     favourite(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     getGenres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Genres> | Promise<Nullable<Genres>>;
-    genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
-    tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
+    getGenre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
+    getTracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Tracks> | Promise<Nullable<Tracks>>;
     track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login?: Nullable<Login>): Nullable<JWT> | Promise<Nullable<JWT>>;
@@ -119,6 +139,9 @@ export interface IMutation {
     createGenre(genre?: Nullable<CreateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
+    createTrack(track?: Nullable<CreateTrack>): Nullable<Track> | Promise<Nullable<Track>>;
+    deleteTrack(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
+    updateTrack(id: string, track?: Nullable<UpdateTrack>): Nullable<Track> | Promise<Nullable<Track>>;
     register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
@@ -164,11 +187,19 @@ export interface Genres {
 export interface Track {
     id: string;
     title: string;
-    albums?: Nullable<Nullable<Album>[]>;
+    album?: Nullable<Album>;
+    artists?: Nullable<Nullable<Artist>[]>;
     bands?: Nullable<Nullable<Band>[]>;
     duration?: Nullable<number>;
     released?: Nullable<number>;
     genres?: Nullable<Nullable<Genre>[]>;
+}
+
+export interface Tracks {
+    items?: Nullable<Nullable<Track>[]>;
+    limit?: Nullable<number>;
+    offset?: Nullable<number>;
+    total?: Nullable<number>;
 }
 
 export interface User {

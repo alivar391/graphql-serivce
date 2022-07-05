@@ -10,6 +10,11 @@ export class ArtistsResolver {
     return this.artistService.getArtists(limit, offset);
   }
 
+  @Query('getArtist')
+  getArtist(@Args('id') id: string, @Context('token') token: string) {
+    return this.artistService.getArtist(id, token);
+  }
+
   @Mutation('createArtist')
   createArtist(
     @Args('artist') artist: CreateArtist,

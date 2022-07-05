@@ -10,6 +10,11 @@ export class GenresResolver {
     return this.genresService.getGenres(limit, offset);
   }
 
+  @Query('getGenre')
+  getGenre(@Args('id') id: string, @Context('token') token: string) {
+    return this.genresService.getGenre(id, token);
+  }
+
   @Mutation('createGenre')
   createGenre(
     @Args('genre') genre: CreateGenre,

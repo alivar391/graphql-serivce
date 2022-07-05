@@ -47,7 +47,7 @@ type DeleteResponse {
 
 type Query {
   getArtists(limit: Int, offset: Int): Artists
-  artist(id: ID!): Artist
+  getArtist(id: ID!): Artist
 }
 
 type Mutation {

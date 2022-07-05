@@ -52,4 +52,15 @@ export class GenresService {
       console.error(error);
     }
   }
+
+  async getGenre(id: string, token: string) {
+    try {
+      const { data } = await this.genre.get(`/${id}`, {
+        headers: { Authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
