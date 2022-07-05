@@ -1,5 +1,5 @@
 type Band {
-  id: ID!
+  _id: ID!
   name: String
   origin: String
   members: [Member]
@@ -20,10 +20,16 @@ type Member {
   years: String
 }
 
+input CreateMember {
+  artist: String
+  instrument: String
+  years: String
+}
+
 input CreateBand {
   name: String!
   origin: String
-  members: [Member]
+  members: [CreateMember]
   website: String
   genres: [String]
 }

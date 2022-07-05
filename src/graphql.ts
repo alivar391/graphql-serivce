@@ -30,10 +30,16 @@ export interface UpdateArtist {
     instruments?: Nullable<string>;
 }
 
+export interface CreateMember {
+    artist?: Nullable<string>;
+    instrument?: Nullable<string>;
+    years?: Nullable<string>;
+}
+
 export interface CreateBand {
     name: string;
     origin?: Nullable<string>;
-    members?: Nullable<Nullable<Member>[]>;
+    members?: Nullable<Nullable<CreateMember>[]>;
     website?: Nullable<string>;
     genres?: Nullable<Nullable<string>[]>;
 }
@@ -166,7 +172,7 @@ export interface IMutation {
 }
 
 export interface Band {
-    id: string;
+    _id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<Member>[]>;
