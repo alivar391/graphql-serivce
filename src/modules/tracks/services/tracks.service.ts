@@ -52,4 +52,15 @@ export class TracksService {
       console.error(error);
     }
   }
+
+  async getTrack(id: string, token: string) {
+    try {
+      const { data } = await this.track.get(`/${id}`, {
+        headers: { Authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

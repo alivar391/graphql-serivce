@@ -1,5 +1,5 @@
 type Track {
-  id: ID!
+  _id: ID!
   title: String!
   album: Album
   artists: [Artist]
@@ -38,7 +38,7 @@ input UpdateTrack {
 
 type Query {
   getTracks(limit: Int, offset: Int): Tracks
-  track(id: ID!): Track
+  getTrack(id: ID!): Track
 }
 
 type Mutation {

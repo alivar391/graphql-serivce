@@ -10,6 +10,11 @@ export class TracksResolver {
     return this.tracksService.getTracks(limit, offset);
   }
 
+  @Query('getTrack')
+  getTrack(@Args('id') id: string, @Context('token') token: string) {
+    return this.tracksService.getTrack(id, token);
+  }
+
   @Mutation('createTrack')
   createTrack(
     @Args('track') track: CreateTrack,

@@ -103,7 +103,7 @@ export interface IQuery {
     getGenres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Genres> | Promise<Nullable<Genres>>;
     getGenre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     getTracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Tracks> | Promise<Nullable<Tracks>>;
-    track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
+    getTrack(id: string): Nullable<Track> | Promise<Nullable<Track>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login?: Nullable<Login>): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
@@ -185,7 +185,7 @@ export interface Genres {
 }
 
 export interface Track {
-    id: string;
+    _id: string;
     title: string;
     album?: Nullable<Album>;
     artists?: Nullable<Nullable<Artist>[]>;
