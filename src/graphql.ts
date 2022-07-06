@@ -7,6 +7,26 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface CreateAlbum {
+    name: string;
+    released?: Nullable<number>;
+    artists?: Nullable<Nullable<string>[]>;
+    bands?: Nullable<Nullable<string>[]>;
+    tracks?: Nullable<Nullable<string>[]>;
+    genres?: Nullable<Nullable<string>[]>;
+    image?: Nullable<string>;
+}
+
+export interface UpdateAlbum {
+    name?: Nullable<string>;
+    released?: Nullable<number>;
+    artists?: Nullable<Nullable<string>[]>;
+    bands?: Nullable<Nullable<string>[]>;
+    tracks?: Nullable<Nullable<string>[]>;
+    genres?: Nullable<Nullable<string>[]>;
+    image?: Nullable<string>;
+}
+
 export interface CreateArtist {
     firstName: string;
     secondName: string;
@@ -103,7 +123,7 @@ export interface Login {
 }
 
 export interface Album {
-    id: string;
+    _id: string;
     name?: Nullable<string>;
     released?: Nullable<number>;
     artists?: Nullable<Nullable<Artist>[]>;
@@ -113,9 +133,16 @@ export interface Album {
     image?: Nullable<string>;
 }
 
+export interface Albums {
+    items?: Nullable<Nullable<Album>[]>;
+    limit?: Nullable<number>;
+    offset?: Nullable<number>;
+    total?: Nullable<number>;
+}
+
 export interface IQuery {
-    albums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Album>[]> | Promise<Nullable<Nullable<Album>[]>>;
-    album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
+    getAlbums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Albums> | Promise<Nullable<Albums>>;
+    getAlbum(id: string): Nullable<Album> | Promise<Nullable<Album>>;
     getArtists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
     getArtist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     getBands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Bands> | Promise<Nullable<Bands>>;
@@ -128,6 +155,25 @@ export interface IQuery {
     getTrack(id: string): Nullable<Track> | Promise<Nullable<Track>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(login?: Nullable<Login>): Nullable<JWT> | Promise<Nullable<JWT>>;
+}
+
+export interface IMutation {
+    createAlbum(album?: Nullable<CreateAlbum>): Nullable<Album> | Promise<Nullable<Album>>;
+    deleteAlbum(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
+    updateAlbum(id: string, album?: Nullable<UpdateAlbum>): Nullable<Album> | Promise<Nullable<Album>>;
+    createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    deleteArtist(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
+    updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
+    createBand(band?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    deleteBand(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
+    createGenre(genre?: Nullable<CreateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
+    deleteGenre(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
+    updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
+    createTrack(track?: Nullable<CreateTrack>): Nullable<Track> | Promise<Nullable<Track>>;
+    deleteTrack(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
+    updateTrack(id: string, track?: Nullable<UpdateTrack>): Nullable<Track> | Promise<Nullable<Track>>;
+    register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Artist {
@@ -152,22 +198,6 @@ export interface Artists {
 export interface DeleteResponse {
     acknowledged?: Nullable<boolean>;
     deletedCount?: Nullable<number>;
-}
-
-export interface IMutation {
-    createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
-    deleteArtist(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
-    updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
-    createBand(band?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
-    updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
-    deleteBand(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
-    createGenre(genre?: Nullable<CreateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
-    deleteGenre(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
-    updateGenre(id: string, genre?: Nullable<UpdateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
-    createTrack(track?: Nullable<CreateTrack>): Nullable<Track> | Promise<Nullable<Track>>;
-    deleteTrack(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
-    updateTrack(id: string, track?: Nullable<UpdateTrack>): Nullable<Track> | Promise<Nullable<Track>>;
-    register(user?: Nullable<RegisterUser>): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Band {
