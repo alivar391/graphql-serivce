@@ -35,10 +35,9 @@ input CreateBand {
 }
 
 input UpdateBand {
-  id: ID!
   name: String
   origin: String
-  members: [String]
+  members: [CreateMember]
   website: String
   genres: [String]
 }
@@ -49,7 +48,7 @@ type Query {
 }
 
 type Mutation {
-  createBand(createBand: CreateBand): Band
-  updateBand(updateBand: UpdateBand): Band
+  createBand(band: CreateBand): Band
+  updateBand(id: ID!, band: UpdateBand): Band
   deleteBand(id: ID!): DeleteResponse
 }

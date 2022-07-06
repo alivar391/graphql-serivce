@@ -45,10 +45,9 @@ export interface CreateBand {
 }
 
 export interface UpdateBand {
-    id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
-    members?: Nullable<Nullable<string>[]>;
+    members?: Nullable<Nullable<CreateMember>[]>;
     website?: Nullable<string>;
     genres?: Nullable<Nullable<string>[]>;
 }
@@ -159,8 +158,8 @@ export interface IMutation {
     createArtist(artist?: Nullable<CreateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
     deleteArtist(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
     updateArtist(id: string, artist?: Nullable<UpdateArtist>): Nullable<Artist> | Promise<Nullable<Artist>>;
-    createBand(createBand?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
-    updateBand(updateBand?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    createBand(band?: Nullable<CreateBand>): Nullable<Band> | Promise<Nullable<Band>>;
+    updateBand(id: string, band?: Nullable<UpdateBand>): Nullable<Band> | Promise<Nullable<Band>>;
     deleteBand(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
     createGenre(genre?: Nullable<CreateGenre>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DeleteResponse> | Promise<Nullable<DeleteResponse>>;
