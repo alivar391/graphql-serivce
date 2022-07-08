@@ -13,10 +13,22 @@ export class TracksService {
 
   async create(track: CreateTrack, token: string) {
     try {
-      const { data } = await this.track.post('/', track, {
+      const sendTrack = {
+        ...track,
+        genresIds: track.genres,
+        bandsIds: track.bands,
+        artistIds: track.artists,
+      };
+      const { data } = await this.track.post('/', sendTrack, {
         headers: { Authorization: token },
       });
-      return data;
+      return {
+        ...data,
+        id: data._id,
+        genres: data.genresIds,
+        bands: data.bandsIds,
+        artist: data.artistsIds,
+      };
     } catch (error) {
       console.error(error);
     }
@@ -35,10 +47,22 @@ export class TracksService {
 
   async update(id: string, track: UpdateTrack, token: string) {
     try {
+      const sendTrack = {
+        ...track,
+        genresIds: track.genres,
+        bandsIds: track.bands,
+        artistIds: track.artists,
+      };
       const { data } = await this.track.put(`/${id}`, track, {
         headers: { Authorization: token },
       });
-      return data;
+      return {
+        ...data,
+        id: data._id,
+        genres: data.genresIds,
+        bands: data.bandsIds,
+        artist: data.artistsIds,
+      };
     } catch (error) {
       console.error(error);
     }
@@ -47,18 +71,19 @@ export class TracksService {
   async getTracks(limit: number, offset: number) {
     try {
       const { data } = await this.track.get(`?limit=${limit}&offset=${offset}`);
+      data.items = data.items.map((item) => {
+        return { ...item, id: item._id };
+      });
       return data;
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getTrack(id: string, token: string) {
+  async getTrack(id: string) {
     try {
-      const { data } = await this.track.get(`/${id}`, {
-        headers: { Authorization: token },
-      });
-      return data;
+      const { data } = await this.track.get(`/${id}`);
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

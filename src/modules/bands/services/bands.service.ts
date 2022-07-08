@@ -1,21 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-import { Band, CreateBand, UpdateBand } from 'src/graphql';
-
-// export interface IBand {
-//   _id: string;
-//   name: string;
-//   origin: string;
-//   membersId: IMember[];
-//   website: string;
-//   genresIds: string[];
-// }
-
-// export interface IMember {
-//   artist: string;
-//   instrument: string;
-//   years: string;
-// }
+import { CreateBand, UpdateBand } from 'src/graphql';
 
 @Injectable()
 export class BandsService {

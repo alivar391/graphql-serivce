@@ -16,7 +16,7 @@ export class GenresService {
       const { data } = await this.genre.post('/', genre, {
         headers: { Authorization: token },
       });
-      return data;
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +38,7 @@ export class GenresService {
       const { data } = await this.genre.put(`/${id}`, genre, {
         headers: { Authorization: token },
       });
-      return data;
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -47,6 +47,9 @@ export class GenresService {
   async getGenres(limit: number, offset: number) {
     try {
       const { data } = await this.genre.get(`?limit=${limit}&offset=${offset}`);
+      data.items = data.items.map((item) => {
+        return { ...item, id: item._id };
+      });
       return data;
     } catch (error) {
       console.error(error);

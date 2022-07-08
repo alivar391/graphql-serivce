@@ -253,7 +253,7 @@ export interface Genres {
 }
 
 export interface Track {
-    _id: string;
+    id: string;
     title: string;
     album?: Nullable<Album>;
     artists?: Nullable<Nullable<Artist>[]>;
