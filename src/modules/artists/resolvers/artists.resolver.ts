@@ -17,19 +17,19 @@ export class ArtistsResolver {
     private readonly artistService: ArtistsService,
     private readonly bandsService: BandsService,
   ) {}
-  @Query('getArtists')
-  getArtists(@Args('limit') limit: number, @Args('offset') offset: number) {
+  @Query('artists')
+  artists(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.artistService.getArtists(limit, offset);
   }
 
-  @Query('getArtist')
-  getArtist(@Args('id') id: string) {
+  @Query('artist')
+  artist(@Args('id') id: string) {
     return this.artistService.getArtist(id);
   }
 
   @ResolveField()
-  bands(@Parent() getArtist) {
-    const { bandsIds } = getArtist;
+  bands(@Parent() artist) {
+    const { bandsIds } = artist;
     return bandsIds.map(async (bandId) => {
       return this.bandsService.getBand(bandId);
     });
