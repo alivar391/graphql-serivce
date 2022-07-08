@@ -4,10 +4,6 @@ type User {
   secondName: String
   password: String
   email: String!
-  favouriteArtistIds: [String]
-  favouriteSongsIds: [String]
-  favouriteBandsIds: [String]
-  favouriteGenresIds: [String]
 }
 
 type JWT {
@@ -19,10 +15,6 @@ input RegisterUser {
   lastName: String!
   password: String!
   email: String!
-  favouriteArtistIds: [String]
-  favouriteSongsIds: [String]
-  favouriteBandsIds: [String]
-  favouriteGenresIds: [String]
 }
 
 input Login {
@@ -35,6 +27,6 @@ type Mutation {
 }
 
 type Query {
-  getUser(id: ID!): User
-  login(login: Login): JWT
+  user(id: ID!): User
+  jwt(login: Login): JWT
 }

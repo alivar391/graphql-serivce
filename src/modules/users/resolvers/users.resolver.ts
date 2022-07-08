@@ -9,12 +9,12 @@ export class UsersResolver {
   register(@Args('user') user: RegisterUser) {
     return this.usersService.create(user);
   }
-  @Query('getUser')
-  getUser(@Args('id') id: string) {
+  @Query('user')
+  user(@Args('id') id: string) {
     return this.usersService.findOneById(id);
   }
-  @Query('login')
-  login(@Args('login') login: Login) {
+  @Query('jwt')
+  jwt(@Args('login') login: Login) {
     return this.usersService.login(login);
   }
 }

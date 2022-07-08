@@ -10,11 +10,11 @@ export class UsersService {
   }
   async create(user: RegisterUser) {
     const { data } = await this.user.post('/register', user);
-    return data;
+    return { ...data, id: data._id };
   }
   async findOneById(id: string) {
     const { data } = await this.user.get(`/${id}`);
-    return data;
+    return { ...data, id: data._id };
   }
   async login(login: Login) {
     const { data } = await this.user.post(`/login`, login);

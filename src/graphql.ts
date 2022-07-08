@@ -110,10 +110,6 @@ export interface RegisterUser {
     lastName: string;
     password: string;
     email: string;
-    favouriteArtistIds?: Nullable<Nullable<string>[]>;
-    favouriteSongsIds?: Nullable<Nullable<string>[]>;
-    favouriteBandsIds?: Nullable<Nullable<string>[]>;
-    favouriteGenresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface Login {
@@ -150,10 +146,10 @@ export interface IQuery {
     favourite(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Genres> | Promise<Nullable<Genres>>;
     genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
-    getTracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Tracks> | Promise<Nullable<Tracks>>;
-    getTrack(id: string): Nullable<Track> | Promise<Nullable<Track>>;
-    getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
-    login(login?: Nullable<Login>): Nullable<JWT> | Promise<Nullable<JWT>>;
+    tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Tracks> | Promise<Nullable<Tracks>>;
+    track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
+    user(id: string): Nullable<User> | Promise<Nullable<User>>;
+    jwt(login?: Nullable<Login>): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
 
 export interface IMutation {
@@ -276,10 +272,6 @@ export interface User {
     secondName?: Nullable<string>;
     password?: Nullable<string>;
     email: string;
-    favouriteArtistIds?: Nullable<Nullable<string>[]>;
-    favouriteSongsIds?: Nullable<Nullable<string>[]>;
-    favouriteBandsIds?: Nullable<Nullable<string>[]>;
-    favouriteGenresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface JWT {
