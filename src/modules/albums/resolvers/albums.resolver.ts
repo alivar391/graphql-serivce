@@ -24,43 +24,43 @@ export class AlbumsResolver {
     private readonly artistsService: ArtistsService,
   ) {}
 
-  @Query('getAlbums')
-  getAlbums(@Args('limit') limit: number, @Args('offset') offset: number) {
+  @Query('albums')
+  albums(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.albumsService.getAlbums(limit, offset);
   }
 
-  @Query('getAlbum')
-  getAlbum(@Args('id') id: string) {
+  @Query('album')
+  album(@Args('id') id: string) {
     return this.albumsService.getAlbum(id);
   }
 
   @ResolveField()
-  genres(@Parent() getAlbum) {
-    const { genresIds } = getAlbum;
+  genres(@Parent() album) {
+    const { genresIds } = album;
     return genresIds.map(async (genreId) => {
       return this.genresService.getGenre(genreId);
     });
   }
 
   @ResolveField()
-  bands(@Parent() getAlbum) {
-    const { bandsIds } = getAlbum;
+  bands(@Parent() album) {
+    const { bandsIds } = album;
     return bandsIds.map(async (bandId) => {
       return this.bandsService.getBand(bandId);
     });
   }
 
   @ResolveField()
-  artists(@Parent() getAlbum) {
-    const { artistsIds } = getAlbum;
+  artists(@Parent() album) {
+    const { artistsIds } = album;
     return artistsIds.map(async (artistId) => {
       return this.artistsService.getArtist(artistId);
     });
   }
 
   @ResolveField()
-  tracks(@Parent() getAlbum) {
-    const { tracksIds } = getAlbum;
+  tracks(@Parent() album) {
+    const { tracksIds } = album;
     return tracksIds.map(async (trackId) => {
       return this.tracksService.getTrack(trackId);
     });

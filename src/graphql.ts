@@ -140,8 +140,8 @@ export interface Albums {
 }
 
 export interface IQuery {
-    getAlbums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Albums> | Promise<Nullable<Albums>>;
-    getAlbum(id: string): Nullable<Album> | Promise<Nullable<Album>>;
+    albums(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Albums> | Promise<Nullable<Albums>>;
+    album(id: string): Nullable<Album> | Promise<Nullable<Album>>;
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Bands> | Promise<Nullable<Bands>>;
