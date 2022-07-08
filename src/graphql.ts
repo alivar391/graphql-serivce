@@ -122,7 +122,7 @@ export interface Login {
 }
 
 export interface Album {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     released?: Nullable<number>;
     artists?: Nullable<Nullable<Artist>[]>;

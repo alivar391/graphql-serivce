@@ -8,6 +8,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { CreateTrack, UpdateTrack } from 'src/graphql';
+import { AlbumsService } from 'src/modules/albums/services/albums.service';
 import { ArtistsService } from 'src/modules/artists/services/artists.service';
 import { BandsService } from 'src/modules/bands/services/bands.service';
 import { GenresService } from 'src/modules/genres/services/genres.service';
@@ -20,6 +21,7 @@ export class TracksResolver {
     private readonly bandsService: BandsService,
     private readonly genresService: GenresService,
     private readonly artistsService: ArtistsService,
+    private readonly albumsService: AlbumsService,
   ) {}
   @Query('getTracks')
   getTracks(@Args('limit') limit: number, @Args('offset') offset: number) {
@@ -29,6 +31,12 @@ export class TracksResolver {
   @Query('getTrack')
   getTrack(@Args('id') id: string) {
     return this.tracksService.getTrack(id);
+  }
+
+  @ResolveField()
+  album(@Parent() getTrack) {
+    const { albumId } = getTrack;
+    return this.albumsService.getAlbum(albumId);
   }
 
   @ResolveField()

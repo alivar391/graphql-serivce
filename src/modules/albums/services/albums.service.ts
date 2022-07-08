@@ -2,17 +2,6 @@ import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { CreateAlbum, UpdateAlbum } from 'src/graphql';
 
-export interface AlbumResponse {
-  _id: string;
-  name: string;
-  released: number;
-  artistsIds: string[];
-  bandsIds: string[];
-  trackIds: string[];
-  genresIds: string[];
-  image: string;
-}
-
 @Injectable()
 export class AlbumsService {
   private readonly album: AxiosInstance;
@@ -24,10 +13,24 @@ export class AlbumsService {
 
   async create(album: CreateAlbum, token: string) {
     try {
-      const { data } = await this.album.post('/', album, {
+      const sendAlbum = {
+        ...album,
+        genresIds: album.genres,
+        bandsIds: album.bands,
+        trackIds: album.tracks,
+        artistIds: album.artists,
+      };
+      const { data } = await this.album.post('/', sendAlbum, {
         headers: { Authorization: token },
       });
-      return data;
+      return {
+        ...data,
+        id: data._id,
+        genres: data.genresIds,
+        bands: data.bandsIds,
+        artist: data.artistsIds,
+        tracks: data.trackIds,
+      };
     } catch (error) {
       console.error(error);
     }
@@ -46,10 +49,24 @@ export class AlbumsService {
 
   async update(id: string, album: UpdateAlbum, token: string) {
     try {
-      const { data } = await this.album.put(`/${id}`, album, {
+      const sendAlbum = {
+        ...album,
+        genresIds: album.genres,
+        bandsIds: album.bands,
+        trackIds: album.tracks,
+        artistIds: album.artists,
+      };
+      const { data } = await this.album.put(`/${id}`, sendAlbum, {
         headers: { Authorization: token },
       });
-      return data;
+      return {
+        ...data,
+        id: data._id,
+        genres: data.genresIds,
+        bands: data.bandsIds,
+        artist: data.artistsIds,
+        tracks: data.trackIds,
+      };
     } catch (error) {
       console.error(error);
     }
@@ -58,18 +75,22 @@ export class AlbumsService {
   async getAlbums(limit: number, offset: number) {
     try {
       const { data } = await this.album.get(`?limit=${limit}&offset=${offset}`);
+      data.items = data.items.map((item) => {
+        return { ...item, id: item._id };
+      });
       return data;
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getAlbum(id: string, token: string) {
+  async getAlbum(id: string) {
     try {
-      const { data } = await this.album.get(`/${id}`, {
-        headers: { Authorization: token },
-      });
-      return data;
+      const { data } = await this.album.get(`/${id}`);
+      return {
+        ...data,
+        id: data._id,
+      };
     } catch (error) {
       console.error(error);
     }
