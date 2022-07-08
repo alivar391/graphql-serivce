@@ -5,13 +5,13 @@ import { GenresService } from '../services/genres.service';
 @Resolver()
 export class GenresResolver {
   constructor(private readonly genresService: GenresService) {}
-  @Query('getGenres')
-  getGenres(@Args('limit') limit: number, @Args('offset') offset: number) {
+  @Query('genres')
+  genres(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.genresService.getGenres(limit, offset);
   }
 
-  @Query('getGenre')
-  getGenre(@Args('id') id: string) {
+  @Query('genre')
+  genre(@Args('id') id: string) {
     return this.genresService.getGenre(id);
   }
 

@@ -148,8 +148,8 @@ export interface IQuery {
     getBand(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     favourites(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Favourites>[]> | Promise<Nullable<Nullable<Favourites>[]>>;
     favourite(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
-    getGenres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Genres> | Promise<Nullable<Genres>>;
-    getGenre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
+    genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Genres> | Promise<Nullable<Genres>>;
+    genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     getTracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Tracks> | Promise<Nullable<Tracks>>;
     getTrack(id: string): Nullable<Track> | Promise<Nullable<Track>>;
     getUser(id: string): Nullable<User> | Promise<Nullable<User>>;
