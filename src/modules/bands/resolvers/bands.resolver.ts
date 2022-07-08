@@ -18,19 +18,19 @@ export class BandsResolver {
     private readonly genresService: GenresService,
   ) {}
 
-  @Query('getBands')
-  getBands(@Args('limit') limit: number, @Args('offset') offset: number) {
+  @Query('bands')
+  bands(@Args('limit') limit: number, @Args('offset') offset: number) {
     return this.bandsService.getBands(limit, offset);
   }
 
-  @Query('getBand')
-  async getBand(@Args('id') id: string) {
+  @Query('band')
+  async band(@Args('id') id: string) {
     return this.bandsService.getBand(id);
   }
 
   @ResolveField()
-  genres(@Parent() getBand) {
-    const { genresIds } = getBand;
+  genres(@Parent() band) {
+    const { genresIds } = band;
     return genresIds.map(async (genreId) => {
       return this.genresService.getGenre(genreId);
     });
