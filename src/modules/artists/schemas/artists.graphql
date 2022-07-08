@@ -1,5 +1,5 @@
 type Artist {
-  _id: ID!
+  id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -7,7 +7,7 @@ type Artist {
   birthPlace: String
   country: String
   bands: [Band]
-  instruments: String
+  instruments: [String]
 }
 
 input CreateArtist {
@@ -18,11 +18,10 @@ input CreateArtist {
   birthPlace: String
   country: String!
   bands: [String]
-  instruments: String
+  instruments: [String]
 }
 
 input UpdateArtist {
-  _id: ID!
   firstName: String
   secondName: String
   middleName: String
@@ -30,7 +29,7 @@ input UpdateArtist {
   birthPlace: String
   country: String
   bands: [String]
-  instruments: String
+  instruments: [String]
 }
 
 type Artists {

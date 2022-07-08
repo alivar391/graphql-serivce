@@ -35,11 +35,10 @@ export interface CreateArtist {
     birthPlace?: Nullable<string>;
     country: string;
     bands?: Nullable<Nullable<string>[]>;
-    instruments?: Nullable<string>;
+    instruments?: Nullable<Nullable<string>[]>;
 }
 
 export interface UpdateArtist {
-    _id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -47,7 +46,7 @@ export interface UpdateArtist {
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
     bands?: Nullable<Nullable<string>[]>;
-    instruments?: Nullable<string>;
+    instruments?: Nullable<Nullable<string>[]>;
 }
 
 export interface CreateMember {
@@ -177,7 +176,7 @@ export interface IMutation {
 }
 
 export interface Artist {
-    _id: string;
+    id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -185,7 +184,7 @@ export interface Artist {
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
     bands?: Nullable<Nullable<Band>[]>;
-    instruments?: Nullable<string>;
+    instruments?: Nullable<Nullable<string>[]>;
 }
 
 export interface Artists {

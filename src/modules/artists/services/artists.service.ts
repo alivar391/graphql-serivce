@@ -13,10 +13,11 @@ export class ArtistsService {
 
   async create(artist: CreateArtist, token: string) {
     try {
-      const { data } = await this.artist.post('/', artist, {
+      const sendArtist = { ...artist, bandsIds: artist.bands };
+      const { data } = await this.artist.post('/', sendArtist, {
         headers: { Authorization: token },
       });
-      return data;
+      return { ...data, id: data._id, bands: data.bandsIds };
     } catch (error) {
       console.error(error);
     }
@@ -35,10 +36,11 @@ export class ArtistsService {
 
   async update(id: string, artist: UpdateArtist, token: string) {
     try {
-      const { data } = await this.artist.put(`/${id}`, artist, {
+      const sendArtist = { ...artist, bandsIds: artist.bands };
+      const { data } = await this.artist.put(`/${id}`, sendArtist, {
         headers: { Authorization: token },
       });
-      return data;
+      return { ...data, id: data._id, bands: data.bandsIds };
     } catch (error) {
       console.error(error);
     }
@@ -49,18 +51,19 @@ export class ArtistsService {
       const { data } = await this.artist.get(
         `?limit=${limit}&offset=${offset}`,
       );
+      data.items = data.items.map((item) => {
+        return { ...item, id: item._id };
+      });
       return data;
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getArtist(id: string, token: string) {
+  async getArtist(id: string) {
     try {
-      const { data } = await this.artist.get(`/${id}`, {
-        headers: { Authorization: token },
-      });
-      return data;
+      const { data } = await this.artist.get(`/${id}`);
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

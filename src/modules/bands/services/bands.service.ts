@@ -27,8 +27,8 @@ export class BandsService {
   }
 
   async create(band: CreateBand, token: string) {
-    const sendBand = { ...band, genresIds: band.genres };
     try {
+      const sendBand = { ...band, genresIds: band.genres };
       const { data } = await this.band.post('/', sendBand, {
         headers: { Authorization: token },
       });
