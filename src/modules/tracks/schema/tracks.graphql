@@ -37,8 +37,8 @@ input UpdateTrack {
 }
 
 type Query {
-  getTracks(limit: Int, offset: Int): Tracks
-  getTrack(id: ID!): Track
+  tracks(limit: Int, offset: Int): Tracks
+  track(id: ID!): Track
 }
 
 type Mutation {
