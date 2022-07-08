@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-import { CreateBand, UpdateBand } from 'src/graphql';
+import { Band, CreateBand, UpdateBand } from 'src/graphql';
 
-export interface IBand {
-  _id: string;
-  name: string;
-  origin: string;
-  membersId: IMember[];
-  website: string;
-  genresIds: string[];
-}
+// export interface IBand {
+//   _id: string;
+//   name: string;
+//   origin: string;
+//   membersId: IMember[];
+//   website: string;
+//   genresIds: string[];
+// }
 
-export interface IMember {
-  artist: string;
-  instrument: string;
-  years: string;
-}
+// export interface IMember {
+//   artist: string;
+//   instrument: string;
+//   years: string;
+// }
 
 @Injectable()
 export class BandsService {
@@ -32,7 +32,6 @@ export class BandsService {
       const { data } = await this.band.post('/', sendBand, {
         headers: { Authorization: token },
       });
-      console.log('create', data);
       return { ...data, id: data._id, genres: data.genresIds };
     } catch (error) {
       console.error(error);
@@ -52,10 +51,11 @@ export class BandsService {
 
   async update(id: string, band: UpdateBand, token: string) {
     try {
-      const { data } = await this.band.put(`/${id}`, band, {
+      const sendBand = { ...band, genresIds: band.genres };
+      const { data } = await this.band.put(`/${id}`, sendBand, {
         headers: { Authorization: token },
       });
-      return { ...data, id: data._id };
+      return { ...data, id: data._id, genres: data.genresIds };
     } catch (error) {
       console.error(error);
     }
@@ -64,6 +64,9 @@ export class BandsService {
   async getBands(limit: number, offset: number) {
     try {
       const { data } = await this.band.get(`?limit=${limit}&offset=${offset}`);
+      data.items = data.items.map((item) => {
+        return { ...item, id: item._id };
+      });
       return data;
     } catch (error) {
       console.error(error);

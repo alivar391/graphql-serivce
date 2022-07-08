@@ -8,16 +8,8 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { CreateBand, UpdateBand } from 'src/graphql';
-import { BandsService, IBand } from '../services/bands.service';
+import { BandsService } from '../services/bands.service';
 import { GenresService } from '../../genres/services/genres.service';
-
-// interface Genre {
-//   _id: string;
-//   name: string;
-//   description: string;
-//   country: string;
-//   year: string;
-// }
 
 @Resolver('Band')
 export class BandsResolver {
@@ -37,7 +29,7 @@ export class BandsResolver {
   }
 
   @ResolveField()
-  genres(@Parent() getBand: IBand) {
+  genres(@Parent() getBand) {
     const { genresIds } = getBand;
     return genresIds.map(async (genreId) => {
       return this.genresService.getGenre(genreId);
