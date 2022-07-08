@@ -53,12 +53,10 @@ export class GenresService {
     }
   }
 
-  async getGenre(id: string, token: string) {
+  async getGenre(id: string) {
     try {
-      const { data } = await this.genre.get(`/${id}`, {
-        headers: { Authorization: token },
-      });
-      return data;
+      const { data } = await this.genre.get(`/${id}`);
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

@@ -7,11 +7,19 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { CreateBand, UpdateBand, Band } from 'src/graphql';
-import { BandsService } from '../services/bands.service';
+import { CreateBand, UpdateBand } from 'src/graphql';
+import { BandsService, IBand } from '../services/bands.service';
 import { GenresService } from '../../genres/services/genres.service';
 
-@Resolver()
+// interface Genre {
+//   _id: string;
+//   name: string;
+//   description: string;
+//   country: string;
+//   year: string;
+// }
+
+@Resolver('Band')
 export class BandsResolver {
   constructor(
     private readonly bandsService: BandsService,
@@ -24,16 +32,16 @@ export class BandsResolver {
   }
 
   @Query('getBand')
-  getBand(@Args('id') id: string, @Context('token') token: string) {
-    return this.bandsService.getBand(id, token);
+  async getBand(@Args('id') id: string) {
+    return this.bandsService.getBand(id);
   }
 
-  @ResolveField('genres')
-  async genres(@Parent() Band: Band) {
-    console.log('aaa');
-    // const { id } = getBand;
-    // console.log('genres', id);
-    // return this.genresService.getGenres({ _id: id });
+  @ResolveField()
+  genres(@Parent() getBand: IBand) {
+    const { genresIds } = getBand;
+    return genresIds.map(async (genreId) => {
+      return this.genresService.getGenre(genreId);
+    });
   }
 
   @Mutation('createBand')

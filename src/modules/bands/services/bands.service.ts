@@ -2,6 +2,21 @@ import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { CreateBand, UpdateBand } from 'src/graphql';
 
+export interface IBand {
+  _id: string;
+  name: string;
+  origin: string;
+  membersId: IMember[];
+  website: string;
+  genresIds: string[];
+}
+
+export interface IMember {
+  artist: string;
+  instrument: string;
+  years: string;
+}
+
 @Injectable()
 export class BandsService {
   private readonly band: AxiosInstance;
@@ -12,11 +27,13 @@ export class BandsService {
   }
 
   async create(band: CreateBand, token: string) {
+    const sendBand = { ...band, genresIds: band.genres };
     try {
-      const { data } = await this.band.post('/', band, {
+      const { data } = await this.band.post('/', sendBand, {
         headers: { Authorization: token },
       });
-      return data;
+      console.log('create', data);
+      return { ...data, id: data._id, genres: data.genresIds };
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +55,7 @@ export class BandsService {
       const { data } = await this.band.put(`/${id}`, band, {
         headers: { Authorization: token },
       });
-      return data;
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -53,12 +70,10 @@ export class BandsService {
     }
   }
 
-  async getBand(id: string, token: string) {
+  async getBand(id: string) {
     try {
-      const { data } = await this.band.get(`/${id}`, {
-        headers: { Authorization: token },
-      });
-      return data;
+      const { data } = await this.band.get(`/${id}`);
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

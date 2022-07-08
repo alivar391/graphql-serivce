@@ -2,6 +2,17 @@ import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { CreateAlbum, UpdateAlbum } from 'src/graphql';
 
+export interface AlbumResponse {
+  _id: string;
+  name: string;
+  released: number;
+  artistsIds: string[];
+  bandsIds: string[];
+  trackIds: string[];
+  genresIds: string[];
+  image: string;
+}
+
 @Injectable()
 export class AlbumsService {
   private readonly album: AxiosInstance;

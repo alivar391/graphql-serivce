@@ -11,8 +11,8 @@ export class GenresResolver {
   }
 
   @Query('getGenre')
-  getGenre(@Args('id') id: string, @Context('token') token: string) {
-    return this.genresService.getGenre(id, token);
+  getGenre(@Args('id') id: string) {
+    return this.genresService.getGenre(id);
   }
 
   @Mutation('createGenre')

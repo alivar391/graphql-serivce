@@ -1,10 +1,21 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CreateAlbum, UpdateAlbum } from 'src/graphql';
-import { AlbumsService } from '../services/albums.service';
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
+import { CreateAlbum, UpdateAlbum, Album, Genre } from 'src/graphql';
+import { GenresService } from 'src/modules/genres/services/genres.service';
+import { AlbumResponse, AlbumsService } from '../services/albums.service';
 
 @Resolver()
 export class AlbumsResolver {
-  constructor(private readonly albumsService: AlbumsService) {}
+  constructor(
+    private readonly albumsService: AlbumsService, // private readonly genresService: GenresService,
+  ) {}
 
   @Query('getAlbums')
   getAlbums(@Args('limit') limit: number, @Args('offset') offset: number) {
@@ -15,6 +26,12 @@ export class AlbumsResolver {
   getAlbum(@Args('id') id: string, @Context('token') token: string) {
     return this.albumsService.getAlbum(id, token);
   }
+
+  // @ResolveField(() => [Genre])
+  // genres(@Parent() album: AlbumResponse, @Context('token') token: string) {
+  //   console.log('resolvefield');
+  //   return album.genresIds.map((id) => this.genresService.getGenre(id, token));
+  // }
 
   @Mutation('createAlbum')
   createAlbum(

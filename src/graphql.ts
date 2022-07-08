@@ -201,7 +201,7 @@ export interface DeleteResponse {
 }
 
 export interface Band {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<Member>[]>;
@@ -231,8 +231,15 @@ export interface Favourites {
     tracks?: Nullable<Nullable<Track>[]>;
 }
 
+export interface Favouritess {
+    items?: Nullable<Nullable<Favourites>[]>;
+    limit?: Nullable<number>;
+    offset?: Nullable<number>;
+    total?: Nullable<number>;
+}
+
 export interface Genre {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     description?: Nullable<string>;
     country?: Nullable<string>;
