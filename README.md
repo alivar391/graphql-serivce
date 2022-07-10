@@ -1,26 +1,19 @@
-### RSSchool NodeJS _Websocket Remote Control_ task implementation
+### RSSchool NodeJS Graphql Service task implementation
 
 ## Description
 
-This app has backend and frontend parts. To start app you should read installation and usage sections, complete all instructions. After it, to run app you should run one of the scripts, and open browser on localhost:3000. You will see page with some information about available commands. You should check status of connection with websocket server in the left bottom corner of page. If connection is `close` you need to refresh page. If connection is `open` you can check commands.
-You can press arrows up, down, left, right and mouse cursor should change its position. When you press `p` key mouse cursor coordinates will be printed. When you press `LCtrl + p` screenshot with size 200px\*200px around the mouse wil be printed on the page.
-To check robot drawing you need to open some graph redactor like paint for example. Place your redactor near the browser on your screen. To draw circle, click on browser, then move cursor to pain and press key `c`. Cursor will start drawing circle! Magic!
-To draw rectangle or square you need click on page with front (to get control), then move cursor to redactor and press key `r` - for drawing rectangle, `s` - for drawing square.
-Have fun!
+Imagine we have a couple of microservices that are created for the service Musicify, a new wikipedia for Music. We need to provide a comfortable and convenient service for our users to manage and retrieve data for different entities.
 
 ## Installation
 
-1. Clone/download repo
-2. Go to the `develop` branch
-3. `npm install`
+1. Clone/download repo (git clone https://github.com/alivar391/graphql-serivce.git)
+2. Go to the `develop` branch (cd graphql-serivce)
+3. `npm install` (npm i)
+4. copy and rename .env.example to .env
 
-#### if you have errors in terminal, you should do next:
-
-1. install python 2.7.0 https://www.python.org/downloads/release/python-3105/
-2. install visual studio https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes
-3. in terminal run `npm install -g node-gyp`
-4. in terminal run `node-gyp rebuild`
-5. in terminal run `npm i`
+For correct working you should have downloaded and launched microservices and database.
+if you don't have them check link below:
+https://github.com/rolling-scopes-school/node-graphql-service
 
 ## Usage
 
@@ -28,21 +21,22 @@ Have fun!
 
 `npm run start:dev`
 
-- App served @ `http://localhost:8080` with nodemon
-
 **Production**
 
 `npm run start`
 
-- App served @ `http://localhost:8080` without nodemon
+### Server will start at PORT in .env file. By default 3000
 
----
+#### You can try queries and mutations in playground
 
-**All commands**
+GraphQL link: localhost:**3000**/graphql (**3000** is your PORT)
 
-| Command         | Description                                          |
-| --------------- | ---------------------------------------------------- |
-| `npm run dev`   | App served @ `http://localhost:8080` with nodemon    |
-| `npm run start` | App served @ `http://localhost:8080` without nodemon |
+To make it easier to check the task, I created a query.txt file in the root directory. Its contents can be copied to the playground and uncommented to perform the necessary queries and mutations. **All id's are for my database, you will have other id's**. After creating a user and login, you need to add a token in the playground below in `HTTP HEADERS` the following form
+`{ "Authorization": "Bearer token" }`
 
-**Note**: replace `npm` with `yarn` in `package.json` if you use yarn.
+#### for example:
+
+`{ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMDZiNTJiOWM3N2ZhMDRlMGU1ZWEiLCJmaXJzdE5hbWUiOiJhbGl2YXIzOTEiLCJsYXN0TmFtZSI6Imxhc3QgbmFtZSIsImVtYWlsIjoiMTIzQG1haWwuY29tIiwiaWF0IjoxNjU3NDA3NDg3fQ.Gk31HcmiHhmJ3JKb76Jg1bBxiJzIS5doeUMkkEMfLes" }`
+
+After it you can uncomment one query or mutation and use it.
+If you have any questions about app or check you can write me Discord: Alivar391#9131
