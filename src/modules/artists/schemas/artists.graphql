@@ -17,7 +17,7 @@ input CreateArtist {
   birthDate: String
   birthPlace: String
   country: String!
-  bands: [String]
+  bandsIds: [String]
   instruments: [String]
 }
 
@@ -28,7 +28,7 @@ input UpdateArtist {
   birthDate: String
   birthPlace: String
   country: String
-  bands: [String]
+  bandsIds: [String]
   instruments: [String]
 }
 

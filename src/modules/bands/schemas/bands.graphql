@@ -31,7 +31,7 @@ input CreateBand {
   origin: String
   members: [CreateMember]
   website: String
-  genres: [String]
+  genresIds: [String]
 }
 
 input UpdateBand {
@@ -39,7 +39,7 @@ input UpdateBand {
   origin: String
   members: [CreateMember]
   website: String
-  genres: [String]
+  genresIds: [String]
 }
 
 type Query {

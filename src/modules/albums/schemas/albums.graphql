@@ -19,20 +19,20 @@ type Albums {
 input CreateAlbum {
   name: String!
   released: Int
-  artists: [String]
-  bands: [String]
-  tracks: [String]
-  genres: [String]
+  artistsIds: [String]
+  bandsIds: [String]
+  tracksIds: [String]
+  genresIds: [String]
   image: String
 }
 
 input UpdateAlbum {
   name: String
   released: Int
-  artists: [String]
-  bands: [String]
-  tracks: [String]
-  genres: [String]
+  artistsIds: [String]
+  bandsIds: [String]
+  tracksIds: [String]
+  genresIds: [String]
   image: String
 }
 

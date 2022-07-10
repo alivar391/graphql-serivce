@@ -13,8 +13,7 @@ export class ArtistsService {
 
   async create(artist: CreateArtist, token: string) {
     try {
-      const sendArtist = { ...artist, bandsIds: artist.bands };
-      const { data } = await this.artist.post('/', sendArtist, {
+      const { data } = await this.artist.post('/', artist, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };
@@ -36,8 +35,7 @@ export class ArtistsService {
 
   async update(id: string, artist: UpdateArtist, token: string) {
     try {
-      const sendArtist = { ...artist, bandsIds: artist.bands };
-      const { data } = await this.artist.put(`/${id}`, sendArtist, {
+      const { data } = await this.artist.put(`/${id}`, artist, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };

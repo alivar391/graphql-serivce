@@ -13,14 +13,7 @@ export class AlbumsService {
 
   async create(album: CreateAlbum, token: string) {
     try {
-      const sendAlbum = {
-        ...album,
-        genresIds: album.genres,
-        bandsIds: album.bands,
-        trackIds: album.tracks,
-        artistsIds: album.artists,
-      };
-      const { data } = await this.album.post('/', sendAlbum, {
+      const { data } = await this.album.post('/', album, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };
@@ -42,14 +35,7 @@ export class AlbumsService {
 
   async update(id: string, album: UpdateAlbum, token: string) {
     try {
-      const sendAlbum = {
-        ...album,
-        genresIds: album.genres,
-        bandsIds: album.bands,
-        trackIds: album.tracks,
-        artistsIds: album.artists,
-      };
-      const { data } = await this.album.put(`/${id}`, sendAlbum, {
+      const { data } = await this.album.put(`/${id}`, album, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };

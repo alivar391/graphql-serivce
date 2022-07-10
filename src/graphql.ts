@@ -10,20 +10,20 @@
 export interface CreateAlbum {
     name: string;
     released?: Nullable<number>;
-    artists?: Nullable<Nullable<string>[]>;
-    bands?: Nullable<Nullable<string>[]>;
-    tracks?: Nullable<Nullable<string>[]>;
-    genres?: Nullable<Nullable<string>[]>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    tracksIds?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
     image?: Nullable<string>;
 }
 
 export interface UpdateAlbum {
     name?: Nullable<string>;
     released?: Nullable<number>;
-    artists?: Nullable<Nullable<string>[]>;
-    bands?: Nullable<Nullable<string>[]>;
-    tracks?: Nullable<Nullable<string>[]>;
-    genres?: Nullable<Nullable<string>[]>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    tracksIds?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
     image?: Nullable<string>;
 }
 
@@ -34,7 +34,7 @@ export interface CreateArtist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country: string;
-    bands?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
     instruments?: Nullable<Nullable<string>[]>;
 }
 
@@ -45,7 +45,7 @@ export interface UpdateArtist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
-    bands?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
     instruments?: Nullable<Nullable<string>[]>;
 }
 
@@ -60,7 +60,7 @@ export interface CreateBand {
     origin?: Nullable<string>;
     members?: Nullable<Nullable<CreateMember>[]>;
     website?: Nullable<string>;
-    genres?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface UpdateBand {
@@ -68,7 +68,7 @@ export interface UpdateBand {
     origin?: Nullable<string>;
     members?: Nullable<Nullable<CreateMember>[]>;
     website?: Nullable<string>;
-    genres?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface AddFavourites {
@@ -92,22 +92,22 @@ export interface UpdateGenre {
 
 export interface CreateTrack {
     title: string;
-    album?: Nullable<string>;
-    artists?: Nullable<Nullable<string>[]>;
-    bands?: Nullable<Nullable<string>[]>;
+    albumId?: Nullable<string>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
     duration?: Nullable<number>;
     released?: Nullable<number>;
-    genres?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface UpdateTrack {
     title?: Nullable<string>;
-    album?: Nullable<string>;
-    artists?: Nullable<Nullable<string>[]>;
-    bands?: Nullable<Nullable<string>[]>;
+    albumId?: Nullable<string>;
+    artistsIds?: Nullable<Nullable<string>[]>;
+    bandsIds?: Nullable<Nullable<string>[]>;
     duration?: Nullable<number>;
     released?: Nullable<number>;
-    genres?: Nullable<Nullable<string>[]>;
+    genresIds?: Nullable<Nullable<string>[]>;
 }
 
 export interface RegisterUser {

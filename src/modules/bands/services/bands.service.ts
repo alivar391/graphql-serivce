@@ -13,8 +13,7 @@ export class BandsService {
 
   async create(band: CreateBand, token: string) {
     try {
-      const sendBand = { ...band, genresIds: band.genres };
-      const { data } = await this.band.post('/', sendBand, {
+      const { data } = await this.band.post('/', band, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };
@@ -36,8 +35,7 @@ export class BandsService {
 
   async update(id: string, band: UpdateBand, token: string) {
     try {
-      const sendBand = { ...band, genresIds: band.genres };
-      const { data } = await this.band.put(`/${id}`, sendBand, {
+      const { data } = await this.band.put(`/${id}`, band, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };

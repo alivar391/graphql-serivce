@@ -13,14 +13,7 @@ export class TracksService {
 
   async create(track: CreateTrack, token: string) {
     try {
-      const sendTrack = {
-        ...track,
-        albumId: track.album,
-        genresIds: track.genres,
-        bandsIds: track.bands,
-        artistsIds: track.artists,
-      };
-      const { data } = await this.track.post('/', sendTrack, {
+      const { data } = await this.track.post('/', track, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };
@@ -42,14 +35,7 @@ export class TracksService {
 
   async update(id: string, track: UpdateTrack, token: string) {
     try {
-      const sendTrack = {
-        ...track,
-        albumId: track.album,
-        genresIds: track.genres,
-        bandsIds: track.bands,
-        artistsIds: track.artists,
-      };
-      const { data } = await this.track.put(`/${id}`, sendTrack, {
+      const { data } = await this.track.put(`/${id}`, track, {
         headers: { Authorization: token },
       });
       return { ...data, id: data._id };
