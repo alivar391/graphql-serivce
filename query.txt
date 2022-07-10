@@ -1,0 +1,784 @@
+# ------------------------// login ++
+# mutation {
+#   register(user: {
+#     firstName: "alivar391",
+#     lastName: "last name",
+#     password: "12341234",
+#     email: "123@mail.com",
+# }) {
+#     id
+#     email,
+#     firstName,
+#     password
+#   }
+# }
+
+# query {
+#   jwt(
+#     login: {
+#       email: "123@mail.com"
+#       password: "$2b$10$d8Xv19WG9CIHkjz9EytXXOhXZqCNugYxhX9sClem/DON26ORLfBey"
+#     }
+#   ) {
+#     jwt
+#   }
+# }
+
+# query {
+#   user(
+#     id: "62ca06b52b9c77fa04e0e5ea"
+#   ) {
+#     id
+#     firstName
+#     lastName
+#     password
+#     email
+#   }
+# }
+
+# -------------------------------ARTIST ++
+# query {
+#   artists(limit: 15, offset: 0) {
+#     items {
+#       id
+#       firstName
+#       secondName
+#       middleName
+#       birthDate
+#       birthPlace
+#       country
+#       bands {
+#         id
+#         name
+#         origin
+#         members {
+#           artist {
+#             firstName
+#             bands{
+#               name
+#             }
+#           }
+#           instrument
+#           years
+#         }
+#         website
+#         genres {
+#           id
+#           name
+#           description
+#           country
+#           year
+#         }
+#       }
+#       instruments
+#     }
+#     limit
+#     offset
+#     total
+#   }
+# }
+
+# query {
+#   artist(id: "62ca1254a7340103b0505d9b") {
+#      id
+#     firstName
+#     secondName
+#     middleName
+#     birthDate
+#     birthPlace
+#     country
+#     bands{
+#       id
+#       name
+#       origin
+#       members {
+#         artist{
+#           id
+#           firstName
+#         }
+#         instrument
+#         years
+#     }
+#       website
+#       genres
+#     {
+#          id
+#         name
+#         description
+#         country
+#         year
+#       }
+#     }
+#     instruments
+#   }
+# }
+
+# mutation {
+#   createArtist(
+#     artist: {
+#       firstName: "Christoph12"
+#       secondName: "Schneider1"
+#       middleName: "Petrovich1"
+#       birthDate: "11/05/1966"
+#       birthPlace: "Leipcig"
+#       country: "GDR"
+#       bandsIds: ["62ca0c09b7c53236c8335edd"]
+#       instruments: ["bas-guitar", "drum"]
+#     }
+#   ) {
+#     id
+#     firstName
+#     secondName
+#     middleName
+#     birthDate
+#     birthPlace
+#     country
+#     bands {
+#       id
+#       name
+#       origin
+#       members {
+#         artist{
+#           firstName
+#         }
+#         instrument
+#         years
+#       }
+#       website
+#       genres {
+#         id
+#         name
+#         description
+#         country
+#         year
+#       }
+#     }
+#     instruments
+#   }
+# }
+
+# mutation {
+#   updateArtist(
+#     id: "62cafc16a7340103b0505e55"
+#     artist: {
+#       firstName: "Christoph12"
+#       secondName: "Schneider1"
+#       middleName: "Petrovich1"
+#       birthDate: "11/05/1966"
+#       birthPlace: "Leipcig"
+#       country: "GDR"
+#       bandsIds: ["62ca0c09b7c53236c8335edd"]
+#       instruments: ["bas-guitar", "drum"]
+#     }
+#   ) {
+#     id
+#     firstName
+#     secondName
+#     middleName
+#     birthDate
+#     birthPlace
+#     country
+#     bands {
+#       id
+#       name
+#       origin
+#       members {
+#         artist{
+#           firstName
+#         }
+#         instrument
+#         years
+#       }
+#       website
+#       genres {
+#         id
+#         name
+#         description
+#         country
+#         year
+#       }
+#     }
+#     instruments
+#   }
+# }
+
+# mutation {
+#   deleteArtist(id: "62cafc16a7340103b0505e55") {
+#     acknowledged
+#     deletedCount
+#   }
+# }
+# -----------------------------------Genres ++
+# query {
+#   genres(limit: 5, offset: 0) {
+#     items {
+#       id
+#       name
+#       description
+#       country
+#       year
+#     }
+#     limit
+#     offset
+#     total
+#   }
+# }
+
+# query {
+#   genre(id: "62ca03e57f0928c29ed977a1") {
+#     id
+#     name
+#     description
+#     country
+#     year
+#   }
+# }
+
+# mutation {
+#   createGenre(genre: {
+#       name: "test"
+#       description: "instrumental"
+#       country: "USA"
+#       year: 1990
+#   }) {
+# 			id
+#       name
+#       description
+#       country
+#       year
+#   }
+# }
+
+# mutation {
+#   deleteGenre(id: "62cafc8a7f0928c29ed978de") {
+#     acknowledged
+#     deletedCount
+#   }
+# }
+
+# mutation {
+#   updateGenre(
+#     id: "62ca03e57f0928c29ed977a1"
+#     genre: {
+#       name: "test-new12"
+#       description: "test-desc"
+#       country: "test-con"
+#       year: 1900
+#     }
+#   ) {
+#     id
+#     name
+#     description
+#     country
+#     year
+#   }
+# }
+
+# -----------------------------------Tracks ++
+# query {
+#   tracks(limit: 15, offset: 0) {
+#     items {
+#     id
+#     title
+#     # album {
+#     #   id
+#     #   name
+#     #   released
+#     #   artists {
+#     #     firstName
+#     #   }
+#     #   bands {
+#     #     name
+#     #   }
+#     #   # tracks {
+#     #   #   title
+#     #   # }
+#     #   genres {
+#     #     name
+#     #   }
+#     #   image
+#     # }
+#     artists {
+#       firstName
+
+#     }
+#     bands {
+#       name
+#     }
+#     duration
+#     released
+#     genres {
+#       name
+#     }
+#   }
+#     limit
+#     offset
+#     total
+#   }
+# }
+
+# query {
+#   track(id: "62caa7185a5785d1c337183e") {
+#     id
+#     title
+#     album {
+#       id
+#       name
+#       released
+#       artists {
+#         firstName
+#       }
+#       bands {
+#         name
+#       }
+#       tracks {
+#         title
+#       }
+#       genres {
+#         name
+#       }
+#       image
+#     }
+#     artists {
+#       firstName
+#       bands{
+#         name
+#       }
+
+#     }
+#     bands {
+#       name
+#     }
+#     duration
+#     released
+#     genres {
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   createTrack(
+#     track: {
+#       title: "Mutter"
+#       albumId: "62ca94d9cef6231a25029355"
+#       artistsIds: ["62ca1254a7340103b0505d9b", "62ca12ffa7340103b0505d9d", "62caa6c6a7340103b0505e28"]
+#       bandsIds: ["62ca0c09b7c53236c8335edd", "62ca0c7bb7c53236c8335edf"]
+#       duration: 200
+#       released: 2005
+#       genresIds: [
+#         "62ca03487f0928c29ed9779b"
+#         "62ca037e7f0928c29ed9779d"
+#       ]
+#     }
+#   ) {
+#     id
+#     title
+#     album {
+#       id
+#       name
+#       released
+#       artists {
+#         firstName
+#       }
+#       bands {
+#         name
+#       }
+#       tracks {
+#         title
+#       }
+#       genres {
+#         name
+#       }
+#       image
+#     }
+#     artists {
+#       firstName
+
+#     }
+#     bands {
+#       name
+#     }
+#     duration
+#     released
+#     genres {
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   deleteTrack(id: "62ca8c435a5785d1c33717f2") {
+#     acknowledged
+#     deletedCount
+#   }
+# }
+
+# mutation {
+#   updateTrack(
+#     id: "62ca8cc25a5785d1c33717f4"
+#     track: {
+#       title: "Sonne"
+#       albumId: "62ca94d9cef6231a25029355"
+#       artistsIds: ["62ca1254a7340103b0505d9b", "62ca12ffa7340103b0505d9d"]
+#       bandsIds: ["62ca0c09b7c53236c8335edd", "62ca0c7bb7c53236c8335edf"]
+#       duration: 200
+#       released: 2005
+#       genresIds: ["62ca03487f0928c29ed9779b", "62ca037e7f0928c29ed9779d"]
+#     }
+#   ) {
+#     id
+#     title
+#     album {
+#       id
+#       name
+#       released
+#       artists {
+#         firstName
+#       }
+#       bands {
+#         name
+#       }
+#       tracks {
+#         title
+#       }
+#       genres {
+#         name
+#       }
+#       image
+#     }
+#     artists {
+#       firstName
+
+#     }
+#     bands {
+#       name
+#     }
+#     duration
+#     released
+#     genres {
+#       name
+#     }
+#   }
+# }
+
+# -----------------------------------Bands ++
+# query {
+#   bands(limit: 15, offset: 0) {
+#     items {
+#       id
+#       name
+#       origin
+#       members {
+#         # artist{
+#         #   id
+#         #   instruments
+#         # }
+#         instrument
+#         years
+#       }
+#       website
+#       genres {
+#         id
+#         name
+#         description
+#         country
+#         year
+#       }
+#     }
+#     limit
+#     offset
+#     total
+#   }
+# }
+
+# query {
+#   band(id: "62ca0c09b7c53236c8335edd") {
+#     id
+#     name
+#     origin
+#     members {
+#       artist {
+#         id
+#         firstName
+#         secondName
+#         middleName
+#         birthDate
+#         birthPlace
+#         instruments
+#       }
+#       instrument
+#       years
+#     }
+#     website
+#     genres {
+#       id
+#       name
+#       description
+#       country
+#       year
+#     }
+#   }
+# }
+
+# mutation {
+#   createBand(
+#     band: {
+#       name: "test"
+#       origin: "Paris"
+#       members: [
+#         { artist: "id1", instrument: "guitar", years: "1991-1999" }
+#         { artist: "id2", instrument: "dumb", years: "1993-2005" }
+#       ]
+#       website: "linkin.com"
+#       genresIds: ["62ca03487f0928c29ed9779b", "62ca03a47f0928c29ed9779f"]
+#     }
+#   ) {
+#     id
+#     name
+#     origin
+#     members {
+#       # artist{
+#       #   id
+#       # }
+#       instrument
+#       years
+#     }
+#     website
+#     genres {
+#       id
+#       name
+#       description
+#       country
+#       year
+#     }
+#   }
+# }
+
+# mutation {
+#   deleteBand(id: "62ca0f74b7c53236c8335efb") {
+#     acknowledged
+#     deletedCount
+#   }
+# }
+
+# mutation {
+#   updateBand(id: "62ca0c09b7c53236c8335edd", band: {
+#       # name: "Linkin Park"
+#       # origin: "Paris"
+#       members: [
+#         { artist: "62ca1254a7340103b0505d9b", instrument: "guitar", years: "1991-1999" }
+#         { artist: "62ca12ffa7340103b0505d9d", instrument: "dumb", years: "1993-2005" }
+#       ]
+#       # website: "linkin.com"
+#       # genresIds: ["62ca03487f0928c29ed9779b", "62ca03a47f0928c29ed9779f"]
+#     }) {
+#     id
+#     name
+#     origin
+#     members {
+#       # artist{
+#       #   id
+#       # }
+#       instrument
+#       years
+#     }
+#     website
+#     genres {
+#       id
+#       name
+#       description
+#       country
+#       year
+#     }
+#   }
+# }
+
+# -----------------------------------Albums ++
+# query {
+#   albums(limit: 15, offset: 0) {
+#     items {
+#       id
+#       name
+#       released
+#       artists{
+#         firstName
+#       }
+#       bands{
+#         name
+#       }
+#       tracks{
+#         title
+#       }
+#       genres{
+#         name
+#       }
+#       image
+#     }
+#     limit
+#     offset
+#     total
+#   }
+# }
+
+# query {
+#   album(id: "62ca936acef6231a2502934f") {
+#     id
+#       name
+#       released
+#       artists{
+#         firstName
+#         bands{
+#           name
+
+#           genres{
+#             name
+#           }
+#         }
+#       }
+#       bands{
+#         name
+#       }
+#       tracks{
+#         title
+#       }
+#       genres{
+#         name
+#       }
+#       image
+#   }
+# }
+
+# mutation {
+#   createAlbum(album: {
+#     name: "Mutter"
+#     released: 2002
+#     artistsIds: ["62ca1254a7340103b0505d9b","62ca12ffa7340103b0505d9d"]
+#     bandsIds: ["62ca0c09b7c53236c8335edd","62ca0c7bb7c53236c8335edf"]
+#     tracksIds: ["62ca8cc25a5785d1c33717f4","62ca8e2e5a5785d1c33717f7"]
+#     genresIds: ["62ca03487f0928c29ed9779b","62ca037e7f0928c29ed9779d"]
+#     image: "image"
+#   }) {
+#     id
+#     name
+#     released
+#     artists{
+#       firstName
+#     }
+#     bands {
+#       name
+#     }
+#     tracks {
+#       title
+#     }
+#     genres {
+#       name
+#     }
+#     image
+#   }
+# }
+
+# mutation {
+#   deleteAlbum(id: "62ca9490cef6231a25029353") {
+#     acknowledged
+#     deletedCount
+#   }
+# }
+
+# mutation {
+#   updateAlbum(id: "62ca936acef6231a2502934f", album: {
+#     name: "Mutter-new"
+#     released: 2002
+#     artistsIds: ["62ca1254a7340103b0505d9b"]
+#     bandsIds: ["62ca0c09b7c53236c8335edd","62ca0c7bb7c53236c8335edf"]
+#     tracksIds: ["62ca8cc25a5785d1c33717f4","62ca8e2e5a5785d1c33717f7"]
+#     genresIds: ["62ca03487f0928c29ed9779b","62ca037e7f0928c29ed9779d"]
+#     image: "image"
+#   }) {
+#     id
+#     name
+#     released
+#     artists{
+#       firstName
+#     }
+#     bands {
+#       name
+#     }
+#     tracks {
+#       title
+#     }
+#     genres {
+#       name
+#     }
+#     image
+#   }
+# }
+
+# -----------------------------------Favourites
+
+# query {
+#   favourites {
+#     id
+#     userId
+#     artists {
+#       firstName
+#     }
+#     bands {
+#       name
+#     }
+#     tracks {
+#       title
+#     }
+#     genres {
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   addBandToFavourites(id: "62ca0c09b7c53236c8335edd") {
+#     id
+#     userId
+#     bands {
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   addTrackToFavourites(id: "62ca8cc25a5785d1c33717f4") {
+#     id
+#     userId
+#     bands {
+#       name
+#     }
+#     tracks{
+#       title
+#       artists{
+#         firstName
+#       }
+#     }
+#   }
+# }
+
+# mutation {
+#   addGenreToFavourites(id: "62ca03487f0928c29ed9779b") {
+#     id
+#     userId
+#     genres {
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   addArtistToFavourites(id: "62ca1254a7340103b0505d9b") {
+#     id
+#     userId
+#     artists {
+#       firstName
+#     }
+#   }
+# }
+
+
