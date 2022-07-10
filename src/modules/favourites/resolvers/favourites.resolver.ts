@@ -14,7 +14,7 @@ import { GenresService } from 'src/modules/genres/services/genres.service';
 import { TracksService } from 'src/modules/tracks/services/tracks.service';
 import { FavouritesService } from '../services/favourites.service';
 
-@Resolver()
+@Resolver('Favourites')
 export class FavouritesResolver {
   constructor(
     private readonly favouritesService: FavouritesService,
@@ -63,9 +63,30 @@ export class FavouritesResolver {
 
   @Mutation('addTrackToFavourites')
   addTrackToFavourites(
-    @Args('favourites') favourites: AddFavourites,
+    @Args('id') id: string,
     @Context('token') token: string,
   ) {
-    return this.favouritesService.create(favourites, token);
+    return this.favouritesService.addTrack(id, token);
+  }
+
+  @Mutation('addBandToFavourites')
+  addBandToFavourites(@Args('id') id: string, @Context('token') token: string) {
+    return this.favouritesService.addBand(id, token);
+  }
+
+  @Mutation('addArtistToFavourites')
+  addArtistToFavourites(
+    @Args('id') id: string,
+    @Context('token') token: string,
+  ) {
+    return this.favouritesService.addArtist(id, token);
+  }
+
+  @Mutation('addGenreToFavourites')
+  addGenreToFavourites(
+    @Args('id') id: string,
+    @Context('token') token: string,
+  ) {
+    return this.favouritesService.addGenre(id, token);
   }
 }

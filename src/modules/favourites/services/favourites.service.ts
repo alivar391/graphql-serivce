@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-import { AddFavourites } from 'src/graphql';
 
 @Injectable()
 export class FavouritesService {
@@ -11,27 +10,48 @@ export class FavouritesService {
     });
   }
 
-  async create(favourites: AddFavourites, token: string) {
-    try {
-      const { data } = await this.favourites.post('/', favourites, {
-        headers: { Authorization: token },
-      });
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+  async addArtist(id: string, token: string) {
+    const { data } = await this.favourites.put(
+      '/add',
+      { type: 'artists', id },
+      { headers: { Authorization: token } },
+    );
+    return { ...data, id: data._id };
+  }
+
+  async addGenre(id: string, token: string) {
+    const { data } = await this.favourites.put(
+      '/add',
+      { type: 'genres', id },
+      { headers: { Authorization: token } },
+    );
+    return { ...data, id: data._id };
+  }
+
+  async addTrack(id: string, token: string) {
+    const { data } = await this.favourites.put(
+      '/add',
+      { type: 'tracks', id },
+      { headers: { Authorization: token } },
+    );
+    return { ...data, id: data._id };
+  }
+
+  async addBand(id: string, token: string) {
+    const { data } = await this.favourites.put(
+      '/add',
+      { type: 'bands', id },
+      { headers: { Authorization: token } },
+    );
+    return { ...data, id: data._id };
   }
 
   async getFavourites(token: string) {
     try {
-      console.log(1);
-      // const { data } = await this.favourites.get('/', {
-      //   headers: { Authorization: token },
-      // });
-      // data.items = data.items.map((item) => {
-      //   return { ...item, id: item._id };
-      // });
-      // return data;
+      const { data } = await this.favourites.get('/', {
+        headers: { Authorization: token },
+      });
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
