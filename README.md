@@ -39,4 +39,15 @@ To make it easier to check the task, I created a query.txt file in the root dire
 `{ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNhMDZiNTJiOWM3N2ZhMDRlMGU1ZWEiLCJmaXJzdE5hbWUiOiJhbGl2YXIzOTEiLCJsYXN0TmFtZSI6Imxhc3QgbmFtZSIsImVtYWlsIjoiMTIzQG1haWwuY29tIiwiaWF0IjoxNjU3NDA3NDg3fQ.Gk31HcmiHhmJ3JKb76Jg1bBxiJzIS5doeUMkkEMfLes" }`
 
 After it you can uncomment one query or mutation and use it.
+
+For example, at first you can create Genre,
+then create Band with id Genres,
+then create Artist with id Band,
+then update Band with artist id,
+then create track with Artist id, Band id, Genre id,
+then create Album with Artist id, Band id, Track id, Genre id,
+then update Track with Album id
+something like that...
+
+Have fun
 If you have any questions about app or check you can write me Discord: Alivar391#9131
