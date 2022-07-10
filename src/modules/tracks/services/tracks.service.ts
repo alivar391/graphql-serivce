@@ -15,20 +15,15 @@ export class TracksService {
     try {
       const sendTrack = {
         ...track,
+        albumId: track.album,
         genresIds: track.genres,
         bandsIds: track.bands,
-        artistIds: track.artists,
+        artistsIds: track.artists,
       };
       const { data } = await this.track.post('/', sendTrack, {
         headers: { Authorization: token },
       });
-      return {
-        ...data,
-        id: data._id,
-        genres: data.genresIds,
-        bands: data.bandsIds,
-        artist: data.artistsIds,
-      };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -49,20 +44,15 @@ export class TracksService {
     try {
       const sendTrack = {
         ...track,
+        albumId: track.album,
         genresIds: track.genres,
         bandsIds: track.bands,
-        artistIds: track.artists,
+        artistsIds: track.artists,
       };
-      const { data } = await this.track.put(`/${id}`, track, {
+      const { data } = await this.track.put(`/${id}`, sendTrack, {
         headers: { Authorization: token },
       });
-      return {
-        ...data,
-        id: data._id,
-        genres: data.genresIds,
-        bands: data.bandsIds,
-        artist: data.artistsIds,
-      };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

@@ -14,7 +14,7 @@ import { GenresService } from 'src/modules/genres/services/genres.service';
 import { TracksService } from 'src/modules/tracks/services/tracks.service';
 import { AlbumsService } from '../services/albums.service';
 
-@Resolver()
+@Resolver('Album')
 export class AlbumsResolver {
   constructor(
     private readonly albumsService: AlbumsService,
@@ -60,8 +60,8 @@ export class AlbumsResolver {
 
   @ResolveField()
   tracks(@Parent() album) {
-    const { tracksIds } = album;
-    return tracksIds.map(async (trackId) => {
+    const { trackIds } = album;
+    return trackIds.map(async (trackId) => {
       return this.tracksService.getTrack(trackId);
     });
   }

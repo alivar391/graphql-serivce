@@ -18,19 +18,12 @@ export class AlbumsService {
         genresIds: album.genres,
         bandsIds: album.bands,
         trackIds: album.tracks,
-        artistIds: album.artists,
+        artistsIds: album.artists,
       };
       const { data } = await this.album.post('/', sendAlbum, {
         headers: { Authorization: token },
       });
-      return {
-        ...data,
-        id: data._id,
-        genres: data.genresIds,
-        bands: data.bandsIds,
-        artist: data.artistsIds,
-        tracks: data.trackIds,
-      };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -54,19 +47,12 @@ export class AlbumsService {
         genresIds: album.genres,
         bandsIds: album.bands,
         trackIds: album.tracks,
-        artistIds: album.artists,
+        artistsIds: album.artists,
       };
       const { data } = await this.album.put(`/${id}`, sendAlbum, {
         headers: { Authorization: token },
       });
-      return {
-        ...data,
-        id: data._id,
-        genres: data.genresIds,
-        bands: data.bandsIds,
-        artist: data.artistsIds,
-        tracks: data.trackIds,
-      };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
