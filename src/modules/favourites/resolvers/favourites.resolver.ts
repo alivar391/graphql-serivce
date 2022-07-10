@@ -7,7 +7,6 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { AddFavourites } from 'src/graphql';
 import { ArtistsService } from 'src/modules/artists/services/artists.service';
 import { BandsService } from 'src/modules/bands/services/bands.service';
 import { GenresService } from 'src/modules/genres/services/genres.service';
