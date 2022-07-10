@@ -10,12 +10,14 @@ import {
 import { CreateBand, UpdateBand } from 'src/graphql';
 import { BandsService } from '../services/bands.service';
 import { GenresService } from '../../genres/services/genres.service';
+import { ArtistsService } from 'src/modules/artists/services/artists.service';
 
 @Resolver('Band')
 export class BandsResolver {
   constructor(
     private readonly bandsService: BandsService,
     private readonly genresService: GenresService,
+    private readonly artistsService: ArtistsService,
   ) {}
 
   @Query('bands')
@@ -33,6 +35,15 @@ export class BandsResolver {
     const { genresIds } = band;
     return genresIds.map(async (genreId) => {
       return this.genresService.getGenre(genreId);
+    });
+  }
+
+  @ResolveField()
+  members(@Parent() band) {
+    const { members } = band;
+    return members.map(async (member) => {
+      const artist = await this.artistsService.getArtist(member.artist);
+      return { ...member, artist };
     });
   }
 

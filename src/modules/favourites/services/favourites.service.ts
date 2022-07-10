@@ -25,13 +25,13 @@ export class FavouritesService {
   async getFavourites(token: string) {
     try {
       console.log(1);
-      const { data } = await this.favourites.get('/', {
-        headers: { Authorization: token },
-      });
+      // const { data } = await this.favourites.get('/', {
+      //   headers: { Authorization: token },
+      // });
       // data.items = data.items.map((item) => {
       //   return { ...item, id: item._id };
       // });
-      return data;
+      // return data;
     } catch (error) {
       console.error(error);
     }

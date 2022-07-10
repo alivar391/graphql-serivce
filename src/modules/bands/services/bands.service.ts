@@ -17,7 +17,7 @@ export class BandsService {
       const { data } = await this.band.post('/', sendBand, {
         headers: { Authorization: token },
       });
-      return { ...data, id: data._id, genres: data.genresIds };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +40,7 @@ export class BandsService {
       const { data } = await this.band.put(`/${id}`, sendBand, {
         headers: { Authorization: token },
       });
-      return { ...data, id: data._id, genres: data.genresIds };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

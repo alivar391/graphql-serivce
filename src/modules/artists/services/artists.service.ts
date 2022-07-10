@@ -17,7 +17,7 @@ export class ArtistsService {
       const { data } = await this.artist.post('/', sendArtist, {
         headers: { Authorization: token },
       });
-      return { ...data, id: data._id, bands: data.bandsIds };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +40,7 @@ export class ArtistsService {
       const { data } = await this.artist.put(`/${id}`, sendArtist, {
         headers: { Authorization: token },
       });
-      return { ...data, id: data._id, bands: data.bandsIds };
+      return { ...data, id: data._id };
     } catch (error) {
       console.error(error);
     }

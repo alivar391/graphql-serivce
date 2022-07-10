@@ -50,7 +50,7 @@ export interface UpdateArtist {
 }
 
 export interface CreateMember {
-    artist?: Nullable<string>;
+    artist: string;
     instrument?: Nullable<string>;
     years?: Nullable<string>;
 }
@@ -220,7 +220,7 @@ export interface Bands {
 }
 
 export interface Member {
-    artist?: Nullable<string>;
+    artist: Artist;
     instrument?: Nullable<string>;
     years?: Nullable<string>;
 }
@@ -270,7 +270,7 @@ export interface Tracks {
 export interface User {
     id: string;
     firstName?: Nullable<string>;
-    secondName?: Nullable<string>;
+    lastName?: Nullable<string>;
     password?: Nullable<string>;
     email: string;
 }
